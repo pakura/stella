@@ -398,6 +398,6 @@ class Builder extends EloquentBuilder
 
         $result = call_user_func_array([$this->query, $method], $parameters);
 
-        return in_array($method, $this->passthru) ? $result : $this;
+        return in_array(strtolower($method), $this->passthru) ? $result : $this;
     }
 }
