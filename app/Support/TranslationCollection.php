@@ -20,7 +20,7 @@ class TranslationCollection
      * @param  \Illuminate\Support\Collection|null $collection
      * @return void
      */
-    public function __construct(Collection $collection = null)
+    public function __construct(?Collection $collection = null)
     {
         $this->collection = $collection;
     }
