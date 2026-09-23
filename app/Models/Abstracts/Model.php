@@ -15,7 +15,7 @@ abstract class Model extends BaseModel
      *
      * @var \Models\Builder\Builder|null
      */
-    protected $builder;
+    protected $eloquentBuilder;
 
     /**
      * Indicates if the model has a languages.
@@ -83,10 +83,10 @@ abstract class Model extends BaseModel
      */
     public function newEloquentBuilder($builder)
     {
-        if ($this->builder instanceof Builder) {
-            $builder = $this->builder;
+        if ($this->eloquentBuilder instanceof Builder) {
+            $builder = $this->eloquentBuilder;
 
-            $this->builder = null;
+            $this->eloquentBuilder = null;
 
             return $builder;
         }
@@ -102,7 +102,7 @@ abstract class Model extends BaseModel
      */
     public function setEloquentBuilder(Builder $builder)
     {
-        $this->builder = $builder;
+        $this->eloquentBuilder = $builder;
 
         return $this;
     }
@@ -243,7 +243,7 @@ abstract class Model extends BaseModel
     /**
      * {@inheritdoc}
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->getAttributeValue($offset);
     }
@@ -251,7 +251,7 @@ abstract class Model extends BaseModel
     /**
      * {@inheritdoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->setAttribute($offset, $value);
     }

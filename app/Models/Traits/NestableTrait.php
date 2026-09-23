@@ -25,7 +25,7 @@ trait NestableTrait
      * @param  \Closure|null  $callback
      * @return static
      */
-    public function getBaseModel($columns = ['*'], $id = null, Closure $callback = null)
+    public function getBaseModel($columns = ['*'], $id = null, ?Closure $callback = null)
     {
         if (! ($id = ($id ?: $this->parent_id))) {
             return $this;

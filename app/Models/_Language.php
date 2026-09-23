@@ -16,17 +16,22 @@ class _Language extends Model
     /**
      * Create a new Language model instance.
      *
-     * @param  \Models\Abstracts\Model  $model
+     * The framework may instantiate this model without a parent model while
+     * booting (e.g. to register observers), so the parent model is optional.
+     *
+     * @param  \Models\Abstracts\Model|null  $model
      * @param  array  $attributes
      * @return void
      */
-    public function __construct(Model $model, array $attributes = [])
+    public function __construct(?Model $model = null, array $attributes = [])
     {
-        $this->table = $model->getLanguageTable();
+        if (! is_null($model)) {
+            $this->table = $model->getLanguageTable();
 
-        $this->fillable = $model->getLanguageFillable();
+            $this->fillable = $model->getLanguageFillable();
 
-        $this->notUpdatable = $model->getLanguageNotUpdatable();
+            $this->notUpdatable = $model->getLanguageNotUpdatable();
+        }
 
         parent::__construct($attributes);
     }
