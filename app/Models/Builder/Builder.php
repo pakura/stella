@@ -135,12 +135,12 @@ class Builder extends EloquentBuilder
     /**
      * {@inheritdoc}
      */
-    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
+    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null, $total = null)
     {
         $this->prefixColumnsOnJoin($columns);
 
-        if (! $this->paginationColumnCallbacks) {
-            return parent::paginate($perPage, $columns, $pageName, $page);
+        if (! $this->paginationColumnCallbacks || ! is_null($total)) {
+            return parent::paginate($perPage, $columns, $pageName, $page, $total);
         }
 
         $columnsBackup = $this->query->columns;
